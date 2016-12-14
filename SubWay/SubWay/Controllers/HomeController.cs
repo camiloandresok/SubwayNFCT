@@ -22,7 +22,7 @@ namespace SubWay.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your contact page.xxx";
 
             return View();
         }
