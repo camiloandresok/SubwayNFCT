@@ -31,7 +31,9 @@ namespace SubWay.Controllers
                 newCustomer.Telefono = "3112110445";
                 newCustomer.Email = "yurypecas@hotmail.com";
                 newCustomer.TwilioCode = "XZZXCERT";
+                dbContext.Customers.Add(newCustomer);
                 dbContext.SaveChanges();
+            
                 ViewBag.Message = "Salvado Ok ...";
             }
             catch (Exception ex)
