@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SubWay.DAL;
 
 namespace SubWay.Controllers
 {
@@ -22,7 +23,24 @@ namespace SubWay.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.xxx";
+            try
+            {
+                demosubwaydbEntities dbContext = new demosubwaydbEntities();
+                Customer newCustomer = new Customer();
+                newCustomer.Nombres = "Andrea Reyes";
+                newCustomer.Telefono = "3112110445";
+                newCustomer.Email = "yurypecas@hotmail.com";
+                newCustomer.TwilioCode = "XZZXCERT";
+                dbContext.SaveChanges();
+                ViewBag.Message = "Salvado Ok ...";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+            }
+
+            
+            
 
             return View();
         }
