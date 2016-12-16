@@ -27,14 +27,14 @@ namespace SubWay.Controllers
             {
                 demosubwaydbEntities dbContext = new demosubwaydbEntities();
                 Customer newCustomer = new Customer();
-                newCustomer.Nombres = "Andrea Reyes";
-                newCustomer.Telefono = "3112110445";
-                newCustomer.Email = "yurypecas@hotmail.com";
-                newCustomer.TwilioCode = "XZZXCERT";
+                newCustomer.Nombres = "Pepito Perez";
+                newCustomer.Telefono = "325206613";
+                newCustomer.Email = "pepitogay@hotmail.com";
+                newCustomer.TwilioCode = "XZWSCERT";
                 dbContext.Customers.Add(newCustomer);
                 dbContext.SaveChanges();
             
-                ViewBag.Message = "Salvado Ok ...";
+                ViewBag.Message = "Customer Salvado Ok gracias karen...";
             }
             catch (Exception ex)
             {
