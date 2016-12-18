@@ -4,4 +4,40 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
+<script type="text/javascript" language="javascript">
+
+    function AsyncProcess()
+    {
+        var procesoData = {
+            'items': [
+        { nombre: 'uno', edad: 1 },
+        { nombre: 'dos', edad: 2 },
+        { nombre: 'tres', edad: 3 }
+            ]
+        };
+
+        $.ajax({
+            type: "POST",
+            data: procesoData,
+            url: '@Url.Action("AsyncProcessP", "Home")',
+            dataType: "html",
+            success: function (result) {
+                var divContainer = document.getElementById("contentContainer");
+                divContainer.innerHTML = result;
+            },
+            error: function () { alert('A error'); }
+        });
+    }
+
+
+
+</script>
+
+
 <p>Use this area to provide additional information.</p>
+<div id="contentContainer"></div>
+<button class="btn btn-success" onclick="AsyncProcess()">Test</button>
+
+
+
+

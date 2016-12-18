@@ -14,6 +14,25 @@ namespace SubWay.Controllers
             return View();
         }
 
+        public ActionResult AsyncProcess()
+        {
+            int x = 0;
+            int y = x;
+             
+            return Content("prueba de comunicacion Ajax Camilo");
+        }
+
+
+        public ActionResult AsyncProcessP(List<Usuario> items)
+        {
+            int x = 0;
+            int y = x;
+
+            return Content("<div><h1> info en header" + System.DateTime.Now.ToString() + "</h1></div>");
+        }
+
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -46,5 +65,11 @@ namespace SubWay.Controllers
 
             return View();
         }
+    }
+
+    public class Usuario
+    {
+        public string Nombre { get; set; }
+        public int Edad { get; set; }
     }
 }
