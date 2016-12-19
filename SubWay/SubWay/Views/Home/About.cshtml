@@ -1,13 +1,55 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+
+
+<header>
+    <div class="container">
+        <div class="row">
+            <img class="col-md-12 img-responsive" src="~/Content/images/Subway_Logo_CUT.png" />
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <section class="main row"></section>
+
+    <form action="" class="form-horizontal " method="get">
+        <div id="frmGroupNombres" class="form-group">
+            <label for="nombres" class="control-label col-md-2">Nombres:</label>
+            <div class="col-md-10">
+                <input id="nombres" class="form-control" type="text" name="nombres">
+            </div>
+        </div>
+
+        <div id="frmGroupTelefono" class="form-group">
+            <label for="telefono" class="control-label col-md-2">Telefono:</label>
+            <div class="col-md-10">
+                <input id="telefono" class="form-control" type="text" name="telefono">
+            </div>
+        </div>
+
+        <div id="frmGroupEmail" class="form-group">
+            <label for="email" class="control-label col-md-2">Email:</label>
+            <div class="col-md-10">
+                <input id="email" class="form-control" type="email" name="email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2 col-md-offset-2">
+                <button type="button" class="btn btn-primary" onclick="AsyncProcess(event)">Enviar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="contentContainer"></div>
 
 <script type="text/javascript" language="javascript">
 
-    function AsyncProcess()
-    {
+    function AsyncProcess(e) {
+
         var procesoData = {
             'items': [
         { nombre: 'uno', edad: 1 },
@@ -29,15 +71,4 @@
         });
     }
 
-
-
 </script>
-
-
-<p>Use this area to provide additional information.</p>
-<div id="contentContainer"></div>
-<button class="btn btn-success" onclick="AsyncProcess()">Test</button>
-
-
-
-

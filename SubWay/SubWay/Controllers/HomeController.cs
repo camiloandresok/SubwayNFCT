@@ -28,7 +28,9 @@ namespace SubWay.Controllers
             int x = 0;
             int y = x;
 
-            return Content("<div><h1> info en header" + System.DateTime.Now.ToString() + "</h1></div>");
+            Customer kk = new Customer();
+
+            return Content("<div><marquee><h1> info en header" + System.DateTime.Now.ToString() + "</h1></marquee></div>");
         }
 
 

@@ -157,6 +157,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\Subway_Logo_CUT.png" />
+    <Content Include="Content\images\Subway_Logo_OG.png" />
     <Content Include="DAL\ObjectModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ObjectModel.edmx</DependentUpon>
