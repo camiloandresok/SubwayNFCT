@@ -2,30 +2,74 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<header>
+    <div class="container">
+        <div class="row">
+            <img class="col-md-12 img-responsive" src="~/Content/images/Subway_Logo_CUT.png" />
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <section class="main row"></section>
+
+    <form action="" class="form-horizontal " method="get">
+        <div id="frmGroupNombres" class="form-group">
+            <label for="nombres" class="control-label col-md-2">Nombres:</label>
+            <div class="col-md-10">
+                <input id="nombres" class="form-control" type="text" name="nombres">
+            </div>
+        </div>
+
+        <div id="frmGroupTelefono" class="form-group">
+            <label for="telefono" class="control-label col-md-2">Telefono:</label>
+            <div class="col-md-10">
+                <input id="telefono" class="form-control" type="text" name="telefono">
+            </div>
+        </div>
+
+        <div id="frmGroupEmail" class="form-group">
+            <label for="email" class="control-label col-md-2">Email:</label>
+            <div class="col-md-10">
+                <input id="email" class="form-control" type="email" name="email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2 col-md-offset-2">
+                <button type="button" class="btn btn-primary" onclick="AsyncProcess(event)">Enviar</button>
+            </div>
+        </div>
+    </form>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+<div id="contentContainer">
+
 </div>
+
+<script type="text/javascript" language="javascript">
+
+    function AsyncProcess(e) {
+
+        var procesoData = {
+            'items': [
+        { nombre: 'uno', edad: 1 },
+        { nombre: 'dos', edad: 2 },
+        { nombre: 'tres', edad: 3 }
+            ]
+        };
+
+        $.ajax({
+            type: "POST",
+            data: procesoData,
+            url: '@Url.Action("AsyncProcessP", "Home")',
+            dataType: "html",
+            success: function (result) {
+                var divContainer = document.getElementById("contentContainer");
+                divContainer.innerHTML = result;
+            },
+            error: function () { alert('A error'); }
+        });
+    }
+
+</script>
