@@ -29,8 +29,8 @@ namespace SubWay.Controllers
             int y = x;
 
             Customer kk = new Customer();
-
-            return Content("<div><marquee><h1> info en header" + System.DateTime.Now.ToString() + "</h1></marquee></div>");
+            string response = @"<div class=""alert alert-success"" role=""alert""><p>Reclame su sandwich con el siguiente codigo : <strong>PPLKDJ<strong></p></div>";
+            return Content(response);
         }
 
 
