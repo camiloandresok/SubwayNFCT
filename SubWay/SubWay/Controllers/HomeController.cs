@@ -20,12 +20,26 @@ namespace SubWay.Controllers
         }
 
 
-        public ActionResult AsyncProcessP(List<Usuario> items)
+        public ActionResult AsyncProcessP(Usuario usuario)
         {
-            Customer customer = new Customer();
+            string response = string.Empty;
+            try
+            {
+                demosubwaydbEntities dbContext = new demosubwaydbEntities();
+                Customer customer = new Customer();
+                customer.Nombres = usuario.Nombre;
+                customer.Telefono = usuario.Telefono;
+                customer.Email = usuario.Email;
+                customer.TwilioCode = Guid.NewGuid().ToString();
+                dbContext.Customers.Add(customer);
+                dbContext.SaveChanges();
+                response = @"<div class=""alert alert-success"" role=""alert""><p>Reclame su sandwich con el siguiente codigo : <strong>"+ customer.TwilioCode + " <strong></p></div>";
+            }
+            catch (Exception ex)
+            {
+                response = @"<div class=""alert alert-danger"" role=""alert""><p>Se presento un error intenta mas tarde : <strong> " + ex.Message + "<strong></p></div>";
+            }
 
-
-            string response = @"<div class=""alert alert-success"" role=""alert""><p>Reclame su sandwich con el siguiente codigo : <strong>PPLKDJ<strong></p></div>";
             return Content(response);
         }
 
@@ -68,6 +82,8 @@ namespace SubWay.Controllers
     public class Usuario
     {
         public string Nombre { get; set; }
-        public int Edad { get; set; }
+        public string Telefono { get; set; }
+        public string Email { get; set; }
+
     }
 }

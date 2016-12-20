@@ -45,8 +45,10 @@
 </div>
 
 <div class="container">
-    <div id="contentContainer">
+    <div class="row">
+        <div id="contentContainer" class="col-md-10 col-md-offset-2">
 
+        </div>
     </div>
 </div>
 
@@ -76,21 +78,15 @@
             validaciones=false;
         }
 
-        if (!validaciones)
-            return false;
+        //if (!validaciones)
+        //    return false;
 
-
-        var procesoData = {
-            'items': [
-        { nombre: 'uno', edad: 1 },
-        { nombre: 'dos', edad: 2 },
-        { nombre: 'tres', edad: 3 }
-            ]
-        };
-
+        
+        var usuario = { "nombre": nombres.value, "telefono": telefono.value, "email": email.value };
+             
         $.ajax({
             type: "POST",
-            data: procesoData,
+            data: usuario,
             url: '@Url.Action("AsyncProcessP", "Home")',
             dataType: "html",
             success: function (result) {
