@@ -78,8 +78,8 @@
             validaciones=false;
         }
 
-        //if (!validaciones)
-        //    return false;
+        if (!validaciones)
+            return false;
 
         
         var usuario = { "nombre": nombres.value, "telefono": telefono.value, "email": email.value };
@@ -93,7 +93,12 @@
                 var divContainer = document.getElementById("contentContainer");
                 divContainer.innerHTML = result;
             },
-            error: function () { alert('A error'); }
+            error: function ()
+            {
+                var divContainer = document.getElementById("contentContainer");
+                divContainer.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">...</div>";
+                
+            }
         });
     }
 
