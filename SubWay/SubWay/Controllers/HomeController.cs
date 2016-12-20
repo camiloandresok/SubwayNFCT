@@ -19,6 +19,31 @@ namespace SubWay.Controllers
             return Content("prueba de comunicacion Ajax Dicisoft");
         }
 
+        private string TwilioSendSMS(string telNumber)
+        {
+
+            string AccountSid = "ACaa7ce275ebee497a57578ca3b49d8ff6";
+            string AuthToken = "fedd9fe73a1019751227bb7052ccd4e0";
+            string code = codeGenerator();
+
+            var client = new Twilio.TwilioRestClient(AccountSid, AuthToken);
+
+            var message = client.SendMessage(
+                "+14157952977", "+57" + telNumber,
+                "Ganaste un Sandwich presenta el codigo " + code + " para reclamarlo"
+            );
+            return code;
+        }
+
+        private string codeGenerator()
+        {
+            string code = "SS"+ "-" + System.DateTime.Now.Second.ToString() +
+                System.DateTime.Now.DayOfYear.ToString() + System.DateTime.Now.Year.ToString(); 
+
+            return code;
+        }
+
+
 
         public ActionResult AsyncProcessP(Usuario usuario)
         {
@@ -30,8 +55,9 @@ namespace SubWay.Controllers
                 customer.Nombres = usuario.Nombre;
                 customer.Telefono = usuario.Telefono;
                 customer.Email = usuario.Email;
-                customer.TwilioCode = Guid.NewGuid().ToString();
+                customer.TwilioCode = TwilioSendSMS(usuario.Telefono);
                 dbContext.Customers.Add(customer);
+               
                 dbContext.SaveChanges();
                 response = @"<div class=""alert alert-success"" role=""alert""><p>Reclame su sandwich con el siguiente codigo : <strong>"+ customer.TwilioCode + " <strong></p></div>";
             }
