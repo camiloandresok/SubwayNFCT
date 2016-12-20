@@ -96,7 +96,8 @@
             error: function ()
             {
                 var divContainer = document.getElementById("contentContainer");
-                divContainer.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">...</div>";
+                
+                divContainer.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">Se presentó un error, revise su conexión y vuelva a intentarlo</div>";
                 
             }
         });
