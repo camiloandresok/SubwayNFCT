@@ -16,19 +16,15 @@ namespace SubWay.Controllers
 
         public ActionResult AsyncProcess()
         {
-            int x = 0;
-            int y = x;
-             
-            return Content("prueba de comunicacion Ajax Camilo");
+            return Content("prueba de comunicacion Ajax Dicisoft");
         }
 
 
         public ActionResult AsyncProcessP(List<Usuario> items)
         {
-            int x = 0;
-            int y = x;
+            Customer customer = new Customer();
 
-            Customer kk = new Customer();
+
             string response = @"<div class=""alert alert-success"" role=""alert""><p>Reclame su sandwich con el siguiente codigo : <strong>PPLKDJ<strong></p></div>";
             return Content(response);
         }
