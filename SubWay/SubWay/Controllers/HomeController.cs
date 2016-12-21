@@ -54,7 +54,7 @@ namespace SubWay.Controllers
                 demosubwaydbEntities dbContext = new demosubwaydbEntities();
                 if(dbContext.Customers.Where(customerToFind => customerToFind.Telefono == usuario.Telefono).Count()>0)
                 {
-                    response = @"<div class=""alert alert-warning"" role=""alert""><p>Ya existe un registro con el numero  : <strong>" + usuario.Telefono + " <strong> Intenta registrarte con otro numero </p></div>";
+                    response = @"<div class=""alert alert-warning"" role=""alert""><p>Ya existe un registro con el numero  : <strong>" + usuario.Telefono + " </strong> Intenta registrarte con otro numero </p></div>";
                 }    
                 else
                 {
