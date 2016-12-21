@@ -38,10 +38,18 @@
 
         <div class="form-group">
             <div class="col-md-2 col-md-offset-2">
-                <button type="button" class="btn btn-primary" onclick="AsyncProcess(event)">Enviar</button>
+                <button id="btnSend" type="button" class="btn btn-primary" onclick="AsyncProcess(event)">Enviar</button>
             </div>
         </div>
     </form>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div id="loadingDiv" class="col-md-10 col-md-offset-2">
+
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -56,7 +64,8 @@
 
     function AsyncProcess(e) {
 
-        
+        var btnSend = document.getElementById("btnSend")
+        btnSend.setAttribute("disabled","disabled")
         var nombres = document.getElementById("nombres");
         var telefono = document.getElementById("telefono");
         var email = document.getElementById("email");
@@ -90,13 +99,14 @@
             url: '@Url.Action("AsyncProcessP", "Home")',
             dataType: "html",
             success: function (result) {
+                btnSend.removeAttribute("disabled");
                 var divContainer = document.getElementById("contentContainer");
                 divContainer.innerHTML = result;
             },
             error: function ()
             {
                 var divContainer = document.getElementById("contentContainer");
-                
+                btnSend.removeAttribute("disabled");
                 divContainer.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">Se presentó un error, revise su conexión y vuelva a intentarlo</div>";
                 
             }

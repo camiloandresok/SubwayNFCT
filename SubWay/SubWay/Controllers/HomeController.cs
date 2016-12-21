@@ -48,18 +48,28 @@ namespace SubWay.Controllers
         public ActionResult AsyncProcessP(Usuario usuario)
         {
             string response = string.Empty;
+            
             try
             {
                 demosubwaydbEntities dbContext = new demosubwaydbEntities();
-                Customer customer = new Customer();
-                customer.Nombres = usuario.Nombre;
-                customer.Telefono = usuario.Telefono;
-                customer.Email = usuario.Email;
-                customer.TwilioCode = TwilioSendSMS(usuario.Telefono);
-                dbContext.Customers.Add(customer);
-               
-                dbContext.SaveChanges();
-                response = @"<div class=""alert alert-success"" role=""alert""><p>Reclame su sandwich con el siguiente codigo : <strong>"+ customer.TwilioCode + " <strong></p></div>";
+                if(dbContext.Customers.Where(customerToFind => customerToFind.Telefono == usuario.Telefono).Count()>0)
+                {
+                    response = @"<div class=""alert alert-warning"" role=""alert""><p>Ya existe un registro con el numero  : <strong>" + usuario.Telefono + " <strong> Intenta registrarte con otro numero </p></div>";
+                }    
+                else
+                {
+
+                    Customer customer = new Customer();
+                    customer.Nombres = usuario.Nombre;
+                    customer.Telefono = usuario.Telefono;
+                    customer.Email = usuario.Email;
+                    customer.TwilioCode = TwilioSendSMS(usuario.Telefono);
+
+
+                    dbContext.Customers.Add(customer);
+                    dbContext.SaveChanges();
+                    response = @"<div class=""alert alert-success"" role=""alert""><p>Reclame su sandwich con el siguiente codigo : <strong>" + customer.TwilioCode + " <strong></p></div>";
+                }
             }
             catch (Exception ex)
             {
