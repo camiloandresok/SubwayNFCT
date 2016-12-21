@@ -88,7 +88,12 @@
         }
 
         if (!validaciones)
+        {
+            var divContainer = document.getElementById("contentContainer");
+            btnSend.removeAttribute("disabled");
             return false;
+        }
+            
 
         
         var usuario = { "nombre": nombres.value, "telefono": telefono.value, "email": email.value };
